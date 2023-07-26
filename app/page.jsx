@@ -15,8 +15,8 @@ import Context from "./context/Context";
 async function getData() {
   try {
     /* si no ha insertado la información */
-    const res = await insertData(); // ingresa la información
-    // await dbConnect();
+    // const res = await insertData(); // ingresa la información
+    await dbConnect();
     const data = await Comment.find({ replyingTo: null }); // los que no respuestas
     return data;
   } catch (error) {

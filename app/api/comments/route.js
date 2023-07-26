@@ -1,9 +1,11 @@
+import dbConnect from "@/libs/dbConnect";
 import Comment from "@/models/Comment";
 import { NextResponse } from "next/server";
 
 
 /* Todos los comentarios */
 export const GET = async () => {
+  await dbConnect();
   try {
     const comments = await Comment.find();
     return NextResponse.json({ comments });

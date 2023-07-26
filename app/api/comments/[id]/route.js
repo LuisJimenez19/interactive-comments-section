@@ -27,6 +27,7 @@ export const POST = async (request, { params }) => {
 
 /* traer Un comentario */
 export const GET = async (resquest, { params }) => {
+  await dbConnect();
   try {
     const { id } = params;
     const comments = await Comment.findById(id);
@@ -39,6 +40,7 @@ export const GET = async (resquest, { params }) => {
 
 /* Eliminar */
 export const DELETE = async (request, { params }) => {
+  await dbConnect();
   try {
     const { id } = params;
     const res = await Comment.findByIdAndDelete(id);
@@ -52,6 +54,7 @@ export const DELETE = async (request, { params }) => {
 
 /* Actualizar tanto el contenido como el score */
 export const PATCH = async (request, { params }) => {
+  await dbConnect();
   try {
     const { id } = params;
     const data = await request.json();
