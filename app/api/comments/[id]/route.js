@@ -27,6 +27,7 @@ export const POST = async (request, { params }) => {
 
 /* traer Un comentario */
 export const GET = async (resquest, { params }) => {
+  console.log("hola ", params.id)
   await dbConnect();
   try {
     const { id } = params;
