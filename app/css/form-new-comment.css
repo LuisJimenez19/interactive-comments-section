@@ -1,0 +1,128 @@
+/* form */
+
+.container-form {
+  flex-direction: column-reverse;
+  background-color: var(--White);
+  padding: 20px;
+  position: relative;
+  /* margin-top: var(--gap-comment); */
+  border-radius: var(--rounded-comment);
+  filter: drop-shadow(0 10px 20px var(--Light-gray));
+  width: 100%;
+
+  transform-origin: top;
+  animation: fade-in 0.3s backwards;
+}
+.container-form.principal {
+  transform-origin: top;
+  animation: show-form .3s backwards;
+  animation-delay: 1s;
+}
+
+.avatar-user-current {
+  height: 35px;
+  width: 35px;
+}
+
+.form {
+  display: flex;
+  flex: 1;
+  gap: 15px;
+}
+
+.new-comment {
+  flex: 1;
+  resize: none;
+  min-height: 90px;
+  font-family: var(--font);
+  font-size: 16px;
+  padding: 10px 12px;
+  border-radius: 5px;
+  border-color: var(--Light-gray);
+  outline: none;
+  transition: all 0.3s;
+}
+
+.new-comment:focus {
+  border-color: var(--Moderate-blue);
+}
+
+.btn-submit,
+.btn-update {
+  display: block;
+  border: none;
+  outline: none;
+
+  background-color: var(--Moderate-blue);
+  padding: 12px 20px;
+  border-radius: var(--rounded-comment);
+
+  font-weight: bold;
+  color: var(--White);
+  text-transform: uppercase;
+  font-family: var(--font);
+
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  filter: opacity(0.5);
+}
+
+.btn-update {
+  align-self: flex-end;
+  /* justify-self: end; */
+  position: relative;
+  bottom: unset;
+  right: unset;
+  transition: all 0.3s;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+
+  transform-origin: bottom;
+  animation: fade-in 0.5s forwards;
+}
+
+.btn-update.active {
+  opacity: 1;
+  padding: 12px 20px;
+  height: 45px;
+}
+
+.container-update-comment {
+  animation: fade-in 0.3s forwards;
+}
+
+@media (min-width: 768px) {
+  .container-form {
+    flex-direction: row;
+  }
+
+  .container-actions,
+  .btn-submit {
+    position: relative;
+    gap: 10px;
+    bottom: unset;
+    right: unset;
+  }
+
+  .btn-submit {
+    height: min-content;
+  }
+}
+
+@keyframes show-form {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

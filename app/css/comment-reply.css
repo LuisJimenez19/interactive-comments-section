@@ -1,0 +1,26 @@
+/* <-------------container replies--------------> */
+.container-replies {
+  width: 95%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-comment);
+  position: relative;
+}
+
+.container-replies::before {
+  content: "";
+  position: absolute;
+  left: -5%; /*lo que le falta para llegar al 100%*/
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--Light-gray);
+}
+
+/*<------------- Desktop ------------------> */
+@media (min-width: 768px) {
+  .container-replies {
+    width: 90%;
+  }
+}

@@ -1,0 +1,33 @@
+/* Actions [edit, delete, reply] */
+
+.container-actions {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  gap: 10px;
+}
+.action {
+  gap: 5px;
+  text-transform: capitalize;
+  font-weight: bold;
+  color: var(--Moderate-blue);
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+.action:hover {
+  filter: opacity(0.5);
+  text-shadow: 0 2px 20px var(--Grayish-Blue);
+}
+.action-delete {
+  color: var(--Soft-Red);
+}
+
+@media (min-width: 768px) {
+  .container-actions,
+  .btn-submit {
+    position: relative;
+    gap: 10px;
+    bottom: unset;
+    right: unset;
+  }
+}

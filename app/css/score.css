@@ -1,0 +1,58 @@
+/* <----comment score-->[icons] */
+
+.card-comment__score {
+  padding: 7px 12px;
+  background-color: var(--Light-gray);
+  height: min-content;
+  border-radius: 10px;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+  width: min-content;
+  transition: all .2s ;
+}
+
+.card-comment__score.loading {
+    cursor: progress;
+    pointer-events: none;
+    opacity: .3;
+}
+
+.icon-score {
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px;
+  border: 1px solid transparent;
+  transition: all 0.3s linear;
+}
+.icon-score:hover {
+  transform: scale(1.2);
+  filter: brightness(0.5);
+}
+
+.icon-plus {
+  background-image: url("/images/icon-plus.svg");
+}
+.icon-minus {
+  background-image: url("/images/icon-minus.svg");
+}
+.value-score {
+  font-weight: 500;
+}
+
+/* desktop */
+@media (min-width: 768px) {
+  .card-comment__score {
+    padding: 7px 9px;
+    background-color: var(--Light-gray);
+    height: min-content;
+    border-radius: 10px;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+  }
+}
