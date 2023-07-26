@@ -8,7 +8,7 @@ import { useMainConext } from "../hooks/useContext";
 import { Toaster } from "react-hot-toast";
 import { validateConfig } from "next/dist/server/config-shared";
 
-function CommentsSection({ initialComments }) {
+function CommentsSection({ initialComments = [] }) {
   const [comments, setComments] = useState(initialComments);
 
   const { showModal } = useMainConext();
@@ -28,7 +28,7 @@ function CommentsSection({ initialComments }) {
   }
 
   useEffect(() => {
-    console.log(comments)
+    console.log(comments);
     getComments();
   }, []);
 
