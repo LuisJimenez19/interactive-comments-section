@@ -6,6 +6,7 @@ import axios from "axios";
 import ModalDelete from "./ModalDelete";
 import { useMainConext } from "../hooks/useContext";
 import { Toaster } from "react-hot-toast";
+import { validateConfig } from "next/dist/server/config-shared";
 
 function CommentsSection({ initialComments }) {
   const [comments, setComments] = useState(initialComments);
@@ -26,11 +27,16 @@ function CommentsSection({ initialComments }) {
     }
   }
 
+  useEffect(() => {
+    console.log(comments)
+    getComments();
+  }, []);
+
   return (
     <>
       <main className="container">
         {comments.map((comment, index) => {
-          const delay = `${index / 10}s`
+          const delay = `${index / 10}s`;
           return (
             <CardComment
               getComments={getComments}
