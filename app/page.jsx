@@ -16,7 +16,7 @@ async function getData() {
   try {
     /* si no ha insertado la información */
     // const res = await insertData(); // ingresa la información
-    // await dbConnect();
+    await dbConnect();
     console.log("Inciando la petición con mongoose")
     const data = await Comment.find({ replyingTo: null }); // los que no respuestas
     console.log(data)
