@@ -8,6 +8,7 @@ export const GET = async () => {
   await dbConnect();
   try {
     const comments = await Comment.find();
+    console.log({comments})
     return NextResponse.json({ comments });
   } catch (error) {
     console.log(error);

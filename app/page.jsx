@@ -41,7 +41,7 @@
 // }
 
 // export default HomePage;
-
+"use client"
 import "./globals.css";
 import CommentsSection from "./components/CommentsSection";
 import Context from "./context/Context";

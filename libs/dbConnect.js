@@ -1,48 +1,27 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
-  )
-}
-
-let cached = global.mongoose
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
+    "Please define the MONGODB_URI environment variable inside .env.local"
+  );
 }
 
 async function dbConnect() {
-  if (cached.conn) {
-    console.log("Connected to database:", cached.conn.connections[0].name)
-    return cached.conn
-  }
-
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    }
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose
-    })
-  }
-
   try {
-    cached.conn = await cached.promise
-
-  } catch (e) {
-    cached.promise = null
-    throw e
+    const { connection } = await mongoose.connect(MONGODB_URI);
+    if (connection.readyState === 1) {
+      console.log("MongoDB Connected", connection.name);
+      return Promise.resolve(true);
+    }
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
   }
-
-  console.log("Connected to database:", cached.conn.connections[0].name)
-  return cached.conn
 }
 
-export default dbConnect
+export default dbConnect;
 
 /* forma recomendada por mongoose 👇🏽*/
 //https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js

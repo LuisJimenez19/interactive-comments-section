@@ -17,7 +17,7 @@ export const POST = async (request, { params }) => {
       user: userId,
     };
     const res = await Comment.create(newComment);
-    console.log(res._id);
+
     return NextResponse.json({ data: res });
   } catch (error) {
     console.log(error);
@@ -27,7 +27,6 @@ export const POST = async (request, { params }) => {
 
 /* traer Un comentario */
 export const GET = async (resquest, { params }) => {
-  console.log("hola ", params.id)
   await dbConnect();
   try {
     const { id } = params;
@@ -63,7 +62,7 @@ export const PATCH = async (request, { params }) => {
     // const res = await Comment.findByIdAndUpdate(id, { content });
 
     const res = await Comment.findOneAndUpdate({ _id: id }, data); // si es undefined no se actualiza
- 
+
     return NextResponse.json({ message: "Actualizado" });
   } catch (error) {
     console.log(error);
