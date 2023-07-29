@@ -17,10 +17,11 @@ function CommentsSection({ initialComments = [] }) {
     try {
       const res = await fetch("/api/comments", { cache: "no-store" });
       const data = await res.json()
-      const initialComments = data.data.comments.filter(
+     
+      const initialComments = data.comments.filter(
         (comment) => !comment.replyingTo
       );
-
+     
       setComments(initialComments);
     } catch (error) {
       console.log(error);
