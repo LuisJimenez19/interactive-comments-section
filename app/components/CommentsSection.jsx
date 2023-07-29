@@ -15,7 +15,7 @@ function CommentsSection({ initialComments = [] }) {
 
   async function getComments() {
     try {
-      const res = await axios("/api/comments", {cache: "no-store"});
+      const res = await fetch("/api/comments", { cache: "no-store" });
       const initialComments = res.data.comments.filter(
         (comment) => !comment.replyingTo
       );
@@ -28,7 +28,6 @@ function CommentsSection({ initialComments = [] }) {
   }
 
   useEffect(() => {
-    console.log(comments);
     getComments();
   }, []);
 

@@ -19,6 +19,7 @@ function CardComment({
   commentParent = false,
   isUpdated = false,
 }) {
+  console.log({ delay, comment });
   const [user, setUser] = useState({}); // the user made who this comment || a quien se le va a responder
   const [userReplying, setUserReplying] = useState({}); // user mention -> se le ha respondido
   const [userToreply, setUserToreply] = useState({}); // user to reply -> se le va a responder
@@ -31,8 +32,11 @@ function CardComment({
   const getDataUser = async (id) => {
     setLoading(true);
     try {
-      const res = (await axios(`/api/user/${id}`)).data;
-      return res;
+      const res = await fetch(`/api/user/${id}`, {
+        cache: "no-store",
+      });
+      const data = await res.json()
+      return data;
     } catch (error) {
       console.error("Error fetching data:", error);
       return null;
