@@ -55,3 +55,51 @@ esto porque no cambian  las dependencias para hacer la petición, lo que hice fu
 que contenga el contenido del comentario y se lo paso a "CardComment" que por defecto va a ser false,
 así puedo usarlo tanto en comentarios que son respuestas como los que son principales, también se lo paso al "updatedComment" que cuando actualiza setea el estado
 y así hace otra vez la petición para ese comentario en el useEffect.
+
+
+
+<---------------------page-<<<<<<<<>>>>>>>>>
+
+/* eslint-disable @next/next/no-img-element */
+
+// import dbConnect from "@/libs/dbConnect";
+// import { insertData } from "@/libs/dbInsertData";
+
+// import Comment from "@/models/Comment";
+
+// import "./globals.css";
+
+// import CommentsSection from "./components/CommentsSection";
+// import Context from "./context/Context";
+
+// /* inserta la información */
+
+// /* trae la información directamente de la base de datos */
+// async function getData() {
+//   try {
+//     /* si no ha insertado la información */
+//     // const res = await insertData(); // ingresa la información
+//     await dbConnect();
+//     console.log("Inciando la petición con mongoose")
+//     const data = await Comment.find({ replyingTo: null }); // los que no respuestas
+//     console.log(data)
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//     return [];
+//   }
+// }
+
+// async function HomePage() {
+//   const res = await getData();
+//   const comments = JSON.parse(JSON.stringify(res)); // pasaro objetos planos
+//   return (
+//     <div className="app">
+//       <Context>
+//         <CommentsSection initialComments={comments} />
+//       </Context>
+//     </div>
+//   );
+// }
+
+// export default HomePage;

@@ -48,7 +48,10 @@ function FormNewComment({
         const res = await axios.post(`/api/comments/${CURREND_ID}`, {
           content: comment,
         });
-        res.status == 200 && getComments();
+        if (res.status === 200) {
+          console.log("deberia mostrar o tra vez la interfaz", res.data);
+          getComments();
+        }
         toast.success("Comment added successfully.");
         setData("");
       } catch (error) {
@@ -61,8 +64,13 @@ function FormNewComment({
           replyingTo: userToreply.userId,
           commentId: commentParent || userToreply.commentId, // le paso el comentario que puede ya ser un hijo
         };
-        const res = await axios.post(`/api/replies/${CURREND_ID}`, newData);
-        res.status === 200 && getComments();
+        const res = await axios.post(`/api/replies/${CURREND_ID}`, newData, {
+          cache: "no-store",
+        });
+        if (res.status === 200) {
+          console.log("deberia mostrar o tra vez la interfaz", res.data);
+          getComments();
+        }
         setUserToreply({});
         toast.success("Answer added successfully");
         setData("");
