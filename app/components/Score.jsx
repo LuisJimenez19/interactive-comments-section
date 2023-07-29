@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
-import "@/app/css/score.css"
+import "@/app/css/score.css";
 
 function Score({ comment }) {
   const [score, setScore] = useState(comment.score);
@@ -27,7 +27,12 @@ function Score({ comment }) {
   async function requestUpdate(commentId, content) {
     setLoadingRequest(true);
     try {
-      const res = await axios.patch(`/api/comments/${commentId}`, content);
+      const res = await axios.patch(`/api/comments/${commentId}`, content, {
+        cache: "no-store",
+        next: {
+          revalidate: 5,
+        },
+      });
       if (res.status === 200) {
         // await getComments();
         toast.success("updated comment");

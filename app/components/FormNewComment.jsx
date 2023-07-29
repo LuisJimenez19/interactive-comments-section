@@ -45,9 +45,18 @@ function FormNewComment({
     }
     if (action === "send") {
       try {
-        const res = await axios.post(`/api/comments/${CURREND_ID}`, {
-          content: comment,
-        });
+        const res = await axios.post(
+          `/api/comments/${CURREND_ID}`,
+          {
+            content: comment,
+          },
+          {
+            cache: "no-store",
+            next: {
+              revalidate: 5,
+            },
+          }
+        );
         if (res.status === 200) {
           console.log("deberia mostrar o tra vez la interfaz", res.data);
           getComments();
@@ -66,6 +75,9 @@ function FormNewComment({
         };
         const res = await axios.post(`/api/replies/${CURREND_ID}`, newData, {
           cache: "no-store",
+          next: {
+            revalidate: 5,
+          },
         });
         if (res.status === 200) {
           console.log("deberia mostrar o tra vez la interfaz", res.data);

@@ -52,7 +52,12 @@ function UpdateComment({
   /* Hace la petición a la base de datos */
   async function requestUpdate(commentId, content) {
     try {
-      const res = await axios.patch(`/api/comments/${commentId}`, content);
+      const res = await axios.patch(`/api/comments/${commentId}`, content, {
+        cache: "no-store",
+        next: {
+          revalidate: 5,
+        },
+      });
       if (res.status === 200) {
         getComments();
         isUpdated && isUpdated.setContentToUpdated(content); // para que haga de nuevo la petición

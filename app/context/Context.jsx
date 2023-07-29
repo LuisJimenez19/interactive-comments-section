@@ -12,13 +12,27 @@ function Context({ children }) {
   async function handleDelete() {
     let success;
     if (commentToDelete && commentToDeleteIsReply) {
-      const res = await axios.patch(`/api/replies/${commentToDelete}`, {
-        commentParentId: commentToDeleteIsReply,
-      });
+      const res = await axios.patch(
+        `/api/replies/${commentToDelete}`,
+        {
+          commentParentId: commentToDeleteIsReply,
+        },
+        {
+          cache: "no-store",
+          next: {
+            revalidate: 5,
+          },
+        }
+      );
       success = res.status === 200 ? true : false;
     } else if (commentToDelete) {
       try {
-        const res = await axios.delete(`/api/comments/${commentToDelete}`);
+        const res = await axios.delete(`/api/comments/${commentToDelete}`, {
+          cache: "no-store",
+          next: {
+            revalidate: 5,
+          },
+        });
         console.log(res);
         setCommentToDelete("");
         success = res.status === 200 ? true : false;
