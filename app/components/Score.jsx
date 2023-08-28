@@ -52,13 +52,13 @@ function Score({ comment }) {
     >
       <span
         onClick={handleScore}
-        id="score-plus"
+        
         className="icon-score icon-plus"
       ></span>
       <p className="value-score">{score}</p>
       <span
         onClick={handleScore}
-        id="score-minus"
+        
         className="icon-score icon-minus"
       ></span>
     </div>
